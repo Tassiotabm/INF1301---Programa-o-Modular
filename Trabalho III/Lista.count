@@ -1,0 +1,29 @@
+////////////////////////////////////////////////
+//
+// Exemplo de arquivo de declaração de contadores
+// Conta módulo Lista marcado
+//
+///////////////////////////////////////////////
+    
+	OrigemListaNulo
+	TamanhoLista
+	TipoDaLista
+	VazamentoDaLista
+	ElemCorrNulo
+	ElemCorrValorNulo
+	ElemCorrPproxNulo
+	ElemCorrPantNulo
+	ElemCorrPproxPvalorNulo
+	ElemCorrPantPvalorNulo
+	
+	NaoElemCorrTipoEspc
+	NaoElemCorrPproxPvalorNulo
+	NaoElemCorrPproxNulo
+	NaoElemCorrPantNulo
+	NaoElemCorrPantPvalorNulo
+	NaoElemCorrNulo
+	NaoElemCorrValorNulo
+	NaoTipoDaLista
+	NaoTamanhoLista
+	NaoOrigemListaNulo
+	NaoVazamentoDaLista
