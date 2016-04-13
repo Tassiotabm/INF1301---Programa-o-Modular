@@ -1,0 +1,1 @@
+TRAB2-2 /sTesteDadoPontos > logTesteDadoPontos.txt
