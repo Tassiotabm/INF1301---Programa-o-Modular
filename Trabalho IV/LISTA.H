@@ -88,13 +88,48 @@ typedef struct LIS_tagLista * LIS_tppLista ;
          LIS_CondRetNaoAchou ,
                /* Não encontrou o valor procurado */
 
-         LIS_CondRetFaltouMemoria,
+         LIS_CondRetFaltouMemoria
                /* Faltou memória ao tentar criar um elemento de lista */
 
-		LIS_CondRetErro
-			/* Nao executou corretamente */
-
    } LIS_tpCondRet ;
+
+   #ifdef _DEBUG
+
+   typedef enum {
+
+         DeturpaEliminaCorr       =  1 ,
+               /* Elimina o nó corrente da esturutra */
+
+         DeturpaPtProxNulo          =  2 ,
+               /* Anula o ponteiro para o próximo elemento da estrutura */
+
+         DeturpaPtAntNulo      =  3 ,
+               /* Anula o ponteiro para o elemento anterior */
+
+         DeturpaPtProxLixo          =  4 ,
+               /* Atribui Lixo para o ponteiro do próximo elemento */
+
+         DeturpaPtAntLixo      =  5 ,
+               /* Atribui Lixo para o ponteiro para o elemento anterior */
+
+         DeturpaPtConteudoCorrNulo            =  6 ,
+               /* Atribui Nulo ao conteúdo do nó corrente */
+
+         DeturpaTipoCorr      =  7 ,
+               /* Modifica o tipo de espaço de dados do nó corrente */
+
+         DeturpaEliminaSemFree         =  8 ,
+               /* Elimina o elemento corrente sem usar free() */
+
+         DeturpaPtCorrNulo         =  9 ,
+               /* Atribui Nulo ao elemento corrente */
+
+         DeturpaPtOrigemNulo        = 10 ,
+               /* Atribui nulo ao ponteiro de origem da estrutura */
+
+   } LIS_ModosDeturpacao ;
+
+#endif
 
 
 /***********************************************************************
@@ -341,24 +376,15 @@ typedef struct LIS_tagLista * LIS_tppLista ;
    LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
                                     void * pValor        ) ;
 
-/***********************************************************************
-*
-*  $FC Função: LIS  &Obgter TAmanho da lista
-*
-*  $ED Descrição da função
-*    Atribui a variável tam o tamanho da lista
-*
-*  $EP Parâmetros
-*     pLista  - ponteiro para a lista onde procura
-*     tam  - ponteiro de referencia para a tamanho da lista
-*
-*  $FV Valor retornado
-*     LIS_CondRetOK  - se ponteiros sao validos
-*
-*     LIS_CondRetErro - ponteiros sao invalidos
-***********************************************************************/
 
-   int LIS_ObterTamanho( LIS_tppLista pLista);
+#ifdef _DEBUG
+
+    LIS_tpCondRet LIS_DesencadeiaSemFree( LIS_tppLista pLista );
+
+	void DeturpaLista ( void* pLista, LIS_ModosDeturpacao Deturpacao);
+
+	// verifica lista....
+#endif
 
 #undef LISTA_EXT
 

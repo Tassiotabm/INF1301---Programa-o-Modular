@@ -26,6 +26,14 @@
 #include   <malloc.h>
 #include   <assert.h>
 
+#ifdef _DEBUG
+   #include   "Generico.h"
+   #include   "Conta.h"
+   #include   "cespdin.h"
+   #include   "IdTiposEspaco.def"
+#endif
+
+
 #define LISTA_OWN
 #include "LISTA.h"
 #undef LISTA_OWN
@@ -39,6 +47,9 @@
 
    typedef struct tagElemLista {
 
+	#ifdef _DEBUG
+		  struct LIS_tagLista * listaCabeca;
+	#endif
          void * pValor ;
                /* Ponteiro para o valor contido no elemento */
 
@@ -76,6 +87,19 @@
 
    } LIS_tpLista ;
 
+#ifdef _DEBUG
+/***** Declaração dos tipos de dados da lista*/
+   typedef enum {
+	   LIS_TipoCabeca,
+	   LIS_TipoElemento
+	   /*
+	   *
+	   *
+	   *
+	   */
+   } LIS_TipoEspaco;
+#endif
+
 /***** Protótipos das funções encapuladas no módulo *****/
 
    static void LiberarElemento( LIS_tppLista   pLista ,
@@ -85,6 +109,17 @@
                                        void *       pValor  ) ;
 
    static void LimparCabeca( LIS_tppLista pLista ) ;
+
+   /*****  vetor de lixo */
+	  #ifdef _DEBUG
+
+      static char vtLixo[ 256 ] =
+             "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" ;
+            /* Espaço de dados lixo usado ao testar */
+
+      #endif
+
+/*********************/
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -108,6 +143,10 @@
       LimparCabeca( pLista ) ;
 
       pLista->ExcluirValor = ExcluirValor ;
+
+	#ifdef _DEBUG
+         CED_DefinirTipoEspaco( pLista , LIS_TipoCabeca ) ;
+    #endif
 
       return pLista ;
 
@@ -481,16 +520,6 @@
    } /* Fim função: LIS  &Procurar elemento contendo valor */
 
 
-/***************************************************************************
-*
-*  Função: LIS  &Obter o tamanho da lista
-*  ****/
- int LIS_ObterTamanho( LIS_tppLista pLista)
-   {
-		return pLista->numElem;
-   } /* Fim função: LIS  &Obter referência para o tamanho da lista*/
-
-
 /*****  Código das funções encapsuladas no módulo  *****/
 
 
@@ -539,6 +568,11 @@
          return NULL ;
       } /* if */
 
+	#ifdef _DEBUG
+      CED_DefinirTipoEspaco( pElem , LIS_TipoElemento ) ;
+	  pElem->listaCabeca = pLista;
+	#endif
+
       pElem->pValor = pValor ;
       pElem->pAnt   = NULL  ;
       pElem->pProx  = NULL  ;
@@ -565,6 +599,151 @@
       pLista->numElem   = 0 ;
 
    } /* Fim função: LIS  -Limpar a cabeça da lista */
+
+
+#ifdef _DEBUG
+
+   LIS_tpCondRet LIS_DesencadeiaSemFree( LIS_tppLista pLista )
+   {
+
+	   tpElemLista * pElem ;
+
+	   assert( pLista  != NULL ) ;
+
+	   if ( pLista->pElemCorr == NULL )
+	   {
+		   return LIS_CondRetListaVazia ;
+	   } /* if */
+
+	   pElem = pLista->pElemCorr ;
+
+	   /* Desencadeia à esquerda */
+
+	   if ( pElem->pAnt != NULL )
+	   {
+		   pElem->pAnt->pProx   = pElem->pProx ;
+		   pLista->pElemCorr    = pElem->pAnt ;
+	   } else {
+		   pLista->pElemCorr    = pElem->pProx ;
+		   pLista->pOrigemLista = pLista->pElemCorr ;
+	   } /* if */
+
+	   /* Desencadeia à direita */
+
+	   if ( pElem->pProx != NULL )
+	   {
+		   pElem->pProx->pAnt = pElem->pAnt ;
+	   } else
+	   {
+		   pLista->pFimLista = pElem->pAnt ;
+	   } /* if */
+
+	   pLista->numElem-- ;
+
+	   return LIS_CondRetOK ;
+
+   } /* Fim função: Desencadeia sem liberar o espaço */
+
+#endif
+
+#ifdef _DEBUG
+/********** Fim do módulo de implementação: LIS  Lista duplamente encadeada **********/
+void DeturpaLista ( void* pLista, LIS_ModosDeturpacao Deturpacao)
+{
+	LIS_tpLista * Lista = NULL;
+
+	if(pLista == NULL)
+		return;
+	Lista = (LIS_tpLista*)(pLista);
+
+	switch (Deturpacao) {
+
+		/* Elimina o nó corrente da estrutura */
+
+		case DeturpaEliminaCorr :
+		{
+			LIS_ExcluirElemento(Lista);
+			break;
+		}
+
+		 /* Anula o ponteiro para o próximo elemento da estrutura */
+
+		case DeturpaPtProxNulo :
+		{
+			Lista->pElemCorr->pProx = NULL;
+			break;
+			
+		}
+
+		/* Anula o ponteiro para o elemento anterior */
+
+		case DeturpaPtAntNulo :
+		{
+			Lista->pElemCorr->pAnt = NULL;
+			break;
+		}
+
+		 /* Atribui Lixo para o ponteiro do próximo elemento */
+
+		case DeturpaPtProxLixo:
+		{
+			Lista->pElemCorr->pProx = (tpElemLista *)(vtLixo);
+			break;
+		}
+
+		 /* Atribui Lixo para o ponteiro para o elemento anterior */
+
+		case DeturpaPtAntLixo :
+		{
+			Lista->pElemCorr->pAnt = (tpElemLista *)(vtLixo);
+			break;
+		}
+
+		/* Atribui Nulo ao conteúdo do nó corrente */
+
+		case DeturpaPtConteudoCorrNulo :
+		{
+			Lista->pElemCorr->pValor = NULL;
+			break;
+		}
+
+		/* Modifica o tipo de espaço de dados do nó corrente */
+
+		case DeturpaTipoCorr :
+		{
+			CED_DefinirTipoEspaco( Lista->pElemCorr->pValor , CED_ID_TIPO_VALOR_NULO ) ;
+			break;
+		}
+
+		/* Elimina o elemento corrente sem usar free() */
+
+		case DeturpaEliminaSemFree :
+		{
+			LIS_DesencadeiaSemFree(Lista);
+			break;
+		}
+
+		/* Atribui Nulo ao elemento corrente */
+
+		case DeturpaPtCorrNulo :
+		{
+			Lista->pElemCorr = NULL;
+			break;
+		}
+
+		 /* Atribui nulo ao ponteiro de origem da estrutura */
+
+		case DeturpaPtOrigemNulo :
+		{
+			Lista->pOrigemLista = NULL;
+			break;
+		}
+
+		default:
+			break;
+	} /* Fim Switch Deturpacao */
+}
+#endif
 
 /********** Fim do módulo de implementação: LIS  Lista duplamente encadeada **********/
 

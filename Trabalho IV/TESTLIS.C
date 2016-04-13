@@ -45,6 +45,8 @@ static const char IR_FIM_CMD              [ ] = "=irfinal"        ;
 static const char AVANCAR_ELEM_CMD        [ ] = "=avancarelem"    ;
 static const char PROCURA_VALOR_CMD       [ ] = "=procurarvalor"    ;
 static const char OBTER_TAMANHO_CMD		  [ ] = "=obtertamanho"     ;
+static const char DETURPA_CMD			  [ ] = "=deturpa"			;
+static const char VERIFICA_CMD			  [ ] = "=verifica"			;
 
 #define TRUE  1
 #define FALSE 0
@@ -101,6 +103,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
       TST_tpCondRet CondRet ;
 
 	  int CondRetObtido = LIS_CondRetOK;
+	  int det, falhasEsperadas, falhasObtidas;
 
       char   StringDado[  DIM_VALOR ] ;
       char * pDado ;
@@ -369,7 +372,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                       "Condicao de retorno errada ao avancar" ) ;
 
          } /* fim ativa: LIS  &Avançar elemento */
-
+		 /* LIS &Testar Obter Tamanho Lista */
 		 else if (strcmp ( ComandoTeste , OBTER_TAMANHO_CMD ) == 0 )
 		 {
 			 numLidos = LER_LerParametros( "iii" ,&inxLista,&ValEsp, &CondRetEsp ) ;
@@ -386,10 +389,40 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 			if ( CondRet != TST_CondRetOK )
                return CondRet ;
 
+						return TST_CondRetOK;
+		 }  /* Fim testar Obter Tamanho */
 
-			return TST_CondRetOK(CondRetObtido, CondRetEsp, "Retorno errado ao obter o tamanho da lista.");
+		 /* Testar Deturpar */
+		 else if (strcmp ( ComandoTeste , DETURPA_CMD ) == 0 )
+		 {
+			 numLidos = LER_LerParametros( "ii" ,&inxLista, &det) ;
+
+			if ( numLidos != 2 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+			DeturpaLista(vtListas[ inxLista ], det);
+
+			return TST_CondRetOK;
 		 }
+		 else if (strcmp ( ComandoTeste , VERIFICA_CMD ) == 0 )
+		 {
+			 numLidos = LER_LerParametros( "ii" ,&inxLista, &falhasEsperadas) ;
 
+			if ( numLidos != 2 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+			verificaLista(vtListas[ inxLista ], &falhasObtidas);
+
+			CondRet = TST_CompararInt( falhasEsperadas , falhasObtidas ,"Numero de falhas esperadas diferente de obtida" ) ;
+			if ( CondRet != TST_CondRetOK )
+               return CondRet ;
+
+			return TST_CondRetOK;
+		 }
 		 return TST_CondRetNaoConhec ;
 
    } /* Fim função: TLIS &Testar lista */

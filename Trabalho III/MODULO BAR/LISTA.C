@@ -485,9 +485,10 @@
 *
 *  Função: LIS  &Obter o tamanho da lista
 *  ****/
- int LIS_ObterTamanho( LIS_tppLista pLista)
+ LIS_tpCondRet LIS_ObterTamanho( LIS_tppLista pLista,int * num)
    {
-		return pLista->numElem;
+		*num = pLista->numElem;
+		return LIS_CondRetOK ;
    } /* Fim função: LIS  &Obter referência para o tamanho da lista*/
 
 
