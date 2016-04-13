@@ -1,0 +1,83 @@
+
+
+LES - Laboratório de Engenharia de Software DI/PUC-Rio
+      Arcabouço de teste de módulos C  (c) 2006
+
+---------------------------------------------
+      Construto sob teste: TRAB1-2
+
+      Arquivo de teste:    TesteMatriz
+
+
+!!!    0  Linha:     1  // Teste Simples de Matrizes 
+    3  == CRIAR MATRIZ 0 - 2x2
+    6  == CRIAR MATRIZ 1 - 6x7
+    9  == CRIAR MATRIZ 2 - 2x1
+   12  == CRIAR MATRIZ 3 - 1x1
+   15  == CRIAR MATRIZ 4 - 7x2
+   18  == CRIAR MATRIZ 5 - 9x7
+   21  == CRIAR MATRIZ 6 - 3x3
+   24  == CRIAR MATRIZ 7 - 10x10
+   27  == CRIAR MATRIZ 8 - 20x20
+   30  == CRIAR MATRIZ 9 - 1x2
+   33  == CRIAR MATRIZ ERRADA (-1x-100)
+   36  == AVANCAR COM O CORRENTE DA MATRIZ 0 O LESTE
+   39  == AVANCAR COM O CORRENTE DA MATRIZ 0 PARA O SUL
+   42  == AVANCAR COM O CORRENTE DA MATRIZ 0 PARA O SUL (ERRADO)
+   45  == AVANCAR COM O CORRENTE DA MATRIZ 2 PAR AO NORTE (ERRADO)
+   48  == AVANCAR LESTE 2 VEZES NA MATRIZ 7 (10x10)
+   51  == AVANCAR SUDESTE NA MATRIZ 7 (10x10)
+   53  == AVANCAR SUL NA MATRIZ 7 (10x10)
+   55  == AVANCAR SUDOESTE NA MATRIZ 7 (10x10)
+   57  == AVANCAR OESTE NA MATRIZ 7 (10x10)
+   59  == AVANCAR NOROESTE NA MATRIZ 7 (10x10)
+   61  == AVANCAR NORTE NA MATRIZ 7 (10x10)
+   63  == AVANCAR NORDESTE NA MATRIZ 7 (10x10)
+   66  == CRIAR LISTA
+   69  == CRIAR MATRIZ ERRADA
+   72  == CRIAR LISTA
+   75  == AVANCAR quarto vezes SUL NA MATRIZ 5
+   82  == INSERIR CHAR
+   85  == TESTAR OBTER VALOR 'C'
+   88  == Inserir char 'a'
+   91  == TESTAR OBTER VALOR 'a'
+   94  ==Inserir char antes
+   97  ==Testar obter valor errado deveria ser 'b'
+>>>    1  Linha:    98  Valor do elemento errado, diferente do esperado Deveria ser: 'f'  É: 'b'
+<<<    0  Linha:    99  Falha esperada foi recuperada. 
+  101  == TESTAR IR FINAL E OBTER O VALOR DO CHAR 'a'
+  105  == TESTAR AVANCAR ELEMENTO CORRENTE DA LISTA E OBTER O VALOR 'b'
+  109  == TESTAR EXCLUIR ELEMENTO DA LISTA E OBTER O VALOR 'c'
+  113  == TESTAR IR INICIO E OBTER O VALOR DO CHAR 'c'
+  117  == Inserir a lista na matriz 0 (2x2) na célula 1x2
+  120  == CRIAR LISTA
+  123  == ADICIONAR CHAR 'f' na lista
+  125  == ADICIONAR CHAR 'l' na lista
+  127  == ADICIONAR CHAR 'a' na lista
+  129  == ADICIONAR CHAR 'v' na lista
+  131  == ADICIONAR CHAR 'i' na lista
+  133  == ADICIONAR CHAR 'o' na lista
+  136  == INSERIR A LISTA NA MATRIZ 5 (9x7) NA CELULA 8x4
+  139  == CRIAR LISTA
+  142  == INSERIR CARACTERES NA LISTA
+  149  == Inserir lista na celula 10x10 da matriz 7 (10x10)
+  152  == DESTRUIR MATRIZ 0
+  154  == DESTRUIR MATRIZ 1
+  156  == DESTRUIR MATRIZ 2
+  158  == DESTRUIR MATRIZ 3
+  160  == DESTRUIR MATRIZ 4
+  162  == DESTRUIR MATRIZ 5
+  164  == DESTRUIR MATRIZ 6
+  166  == DESTRUIR MATRIZ 7
+  168  == DESTRUIR MATRIZ 8
+  170  == DESTRUIR MATRIZ 9
+
+!!! Número de linhas lidas:         172
+!!! Número de casos de teste:        59
+!!! Número comandos corretos:        70
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

@@ -1,0 +1,8 @@
+Data	 			Horas Trabalhadas				 Tipo Tarefa	     					Descrição da Tarefa Realizada
+
+17/08					2h					Estudar/Projetar      					Projetando como seria feita o básico da implementação das matrizes
+19/08					2h					Projetar/espicicar as funções				Feita uma lista de funções que devem ser usadas pelo módulo de matrizes (a adicionar mais)
+24/08					2h					Codificar/especificar funções				Feita a implementação da criar e destruir matriz
+26/08					2h					Revisar Código/Codificar				Codificação das funções de acesso que manipula as listas armazenadas na matriz e feita a função avancar de celula da matriz
+29/08					3h					codificar/Redigir script de teste			Feito um script mais completo de matrizes, código sofreu certas alterações devido a erros no script
+30/08					3h					Redigir script de teste/ revisar codigo do módulo	Teste das matrizes agora mais completo, revisando o módulo de matrizes certificando o seu padrão

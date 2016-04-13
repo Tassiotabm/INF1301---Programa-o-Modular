@@ -1,0 +1,1 @@
+TRAB1-1 /sTesteLista > logTesteLista.txt

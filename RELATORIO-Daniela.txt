@@ -1,0 +1,16 @@
+
+DATA		|HORAS TRABALHADAS		|TIPO DE TAREFA						|DESCRIÇÃO DA TAREFA REALIZADA
+
+
+14/08/15	|		3		|Estudar						|Instalação do arcabouço, estudo da estrutura de diretórios do arcabouço, de suas formas de uso e do enunciado do trabalho.
+
+18/08/15	|		2		|Estudar						|Estudo das funções existentes necessárias para a realização do trabalho e de viáveis alterações.
+
+19/08/15	|		2		|Especificar os Módulos, Especificar as Funções		|Especificação dos novos módulos e funções.
+
+24/08/15	|		2		|Revisar Código, Projetar, Codificar Módulo		|Revisão do código da criamatriz. Projeção e codificação da função destroimatriz.
+
+26/08/15	|		1		|Testar, Corrigir, Codificar Módulo			|Revisão, teste e correção do funcionamento das funções. Codificação da inserelista.
+
+28/08/15	|		2		|Revisar Plano de Teste, Revisar Projetos, Corrigir	|Revisão e execução dos scripts de teste. Correção de erros identificados pelos testes.
+

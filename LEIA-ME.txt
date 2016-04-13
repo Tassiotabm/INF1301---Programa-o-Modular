@@ -1,0 +1,39 @@
+INF1301 - Trabalho 1
+
+Pasta Lista : Contém um script de teste de lista duplamente encadeada,
+um arquivo executável e uma .bat file para executar tudo.
+	- TRAB1-1.exe
+	- TesteLista.script
+	- TesteLista.bat
+	- logTesteLista.txt
+Pasta Source Lista: Contém os arquivos fontes necessários para gerar o executável de lista.
+	- GENERICO.H
+	- LERPARM.H
+	- LISTA.C
+	- LISTA.H
+	- TESTELIS.C
+	- TST_ESPC.C
+
+Pasta Matriz : Contém um script de teste de matrizes, um executável e uma .bat file para agrupar e executar tudo.
+	- TRAB1-2.exe
+	- TesteMatriz.script
+	- TesteMatriz.bat
+	- logTesteMatriz.txt
+Pasta Source Matriz : Contém todos os arquivos fontes necessários para gerar o executável de Matriz
+	- GENERICO.H
+	- LERPARM.H
+	- LISTA.C
+	- LISTA.H
+	- MATRIZ.C
+	- MATRIZ.H
+	- TESTMAT.C
+	- TST_ESPC.C
+
+---------------- Como Usar ----------------------
+
+Lista : Para rodar o script de lista basta clicar no arquivo TesteLista.bat, isso fará gerar um
+log de saída chamado logTesteLista.txt que contém as informações de como foi o andamento do script de teste
+
+Matriz : Para rodar o script de matrizes basta clicar no arquivo TesteLista.bat, isso fará gerar um
+log de saída como nome logTesteMatriz.txt que possui as informações de como foi o andamento do script de teste
+	

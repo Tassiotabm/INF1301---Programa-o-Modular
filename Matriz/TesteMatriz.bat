@@ -1,0 +1,1 @@
+TRAB1-2 /sTesteMatriz > logTesteMatriz.txt
